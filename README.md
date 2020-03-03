@@ -20,7 +20,7 @@ Your stable reference utility library with everything you need to test, visualiz
 
 ## Motivation 🧠
 
-I struggle with React hooks! It's not always obvious to me if i'm using hooks, such as `useEffect`, with unstable references, resulting in unnecessary rerenders. If left unchecked this could decrease the performance in your app, cause jank and ultimately degrade your user's experience 😭.
+I struggle with React hooks! It's not always obvious to me if i'm using unstable references with hooks such as `useEffect`. Unnecessary rerenders when left unchecked can decrease the performance of your app, cause jank and ultimately degrade your user's experience 😭.
 
 Thankfully the React team have already thought about this and provide [lint rules to help](https://www.npmjs.com/package/eslint-plugin-react-hooks) 🥰. But what if you're passing objects and arrays into dependency arrays which are not 'deeply' compared?
 How can you know for sure? This is why I've put this library together...
@@ -107,6 +107,3 @@ Huge thank you to [Pablo Stanley](https://twitter.com/pablostanley) and contribu
 -   [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)
 -   [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback/)
 
-```
-
-```
