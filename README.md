@@ -35,8 +35,9 @@ A **development only** hook, which increments state over a predefined interval, 
 
 **Arguments:**
 
--   timeout: `Number` Timeout between rerenders
--   shouldLog: `Bool` Emit a warning log on rerender
+-   args: `Object`
+    -   timeout: `Number` Timeout between rerenders
+    -   shouldLog: `Bool` Emit a warning log on rerender
 
 **Returns:**
 
