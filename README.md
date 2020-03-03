@@ -33,7 +33,7 @@ Think of it as your stable reference utility library with everything you need to
 
 A **development only** hook, which increments state over a predefined interval, triggering rerenders in your component.
 
-**Arugments:**
+**Arguments:**
 
 -   timeout: `Number` Timeout between rerenders
 -   shouldLog: `Bool` Emit a warning log on rerender
@@ -58,17 +58,44 @@ const UnstableButton = ({ children }) => {
 };
 ```
 
+### `useWhichDepChanged()`
+
+A **development only** hook which emits (via console) which prop triggered an update. Useful when you are unsure which property changed in a `useEffect` dependency array.
+
+_Inspired by_: [useWhyDidYouUpdate](https://usehooks.com/useWhyDidYouUpdate/)
+
+**Arguments:**
+
+-   name: `String` A name to identify your hook when logged to the console
+-   dependencies: `Object` A dependency object which mirrors the dependency array of the hook you are trying to test
+
+**Returns:**
+
+`void`
+
+**Example:**
+
+```jsx
+const UnstableButton = ({ children }) => {
+    const myArray = ['1', '2', '3'];
+
+    useWhichDepChanged('UnstableButton', { myArray, children });
+
+    return <button>{children}</button>;
+};
+```
+
+### `useDeeplyComparedEffect()`
+
+_Coming soon..._
+
+A react hook for deeply comparing objects and arrays passed into its dependency array.
+
 ### `<RenderCount />`
 
 _Coming soon..._
 
 A visual component that keeps track of the number of renders that have occurred.
-
-### `useDeeplyComparedEffect`
-
-_Coming soon..._
-
-A react hook for deeply comparing objects and arrays passed into its dependency array.
 
 ## Thanks 😍
 
@@ -79,3 +106,7 @@ Huge thank you to [Pablo Stanley](https://twitter.com/pablostanley) and contribu
 -   [Introducing Hooks](https://reactjs.org/docs/hooks-intro.html)
 -   [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)
 -   [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback/)
+
+```
+
+```
