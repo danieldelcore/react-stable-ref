@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 
 export interface UseStableRefTesterArgs {
-    timeout: number;
-    shouldLog: boolean;
+    timeout?: number;
+    shouldLog?: boolean;
 }
 
-export const useStableRefTester = ({
-    timeout = 1000,
-    shouldLog = false,
-}: UseStableRefTesterArgs) => {
-    if ((process.env.NODE_ENV = 'production')) {
+export const useStableRefTester = (
+    { timeout, shouldLog }: UseStableRefTesterArgs = { timeout: 1000 },
+) => {
+    if (process.env.NODE_ENV === 'production') {
         console.warn(
             'useStableRefTester is only intended for development purposes only. Please remove from production bundles.',
         );
