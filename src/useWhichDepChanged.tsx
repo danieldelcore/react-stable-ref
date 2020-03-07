@@ -1,16 +1,18 @@
 import { useRef, useEffect } from 'react';
 
+type Dependencies = Record<string, any>;
+
 const useWhichDepChanged = (
-    name: string,
-    dependencies: Record<string, any>,
+    dependencies: Dependencies,
+    onChange?: (changedDeps: Dependencies) => void,
 ) => {
-    if ((process.env.NODE_ENV = 'production')) {
+    if (process.env.NODE_ENV === 'production') {
         console.warn(
             'useStableRefTester is only intended for development purposes only. Please remove from production bundles.',
         );
     }
 
-    const previousDeps = useRef<Record<string, any> | undefined>();
+    const previousDeps = useRef<Dependencies | undefined>();
 
     useEffect(() => {
         if (previousDeps.current) {
@@ -18,19 +20,21 @@ const useWhichDepChanged = (
                 ...previousDeps.current,
                 ...dependencies,
             });
-            const changesObj: Record<string, any> = {};
+            const changedDeps: Dependencies = {};
 
             allKeys.forEach(key => {
                 if (previousDeps.current![key] !== dependencies[key]) {
-                    changesObj[key] = {
+                    changedDeps[key] = {
                         from: previousDeps.current![key],
                         to: dependencies[key],
                     };
                 }
             });
 
-            if (Object.keys(changesObj).length) {
-                console.log('[why-did-you-update]', name, changesObj);
+            if (Object.keys(changedDeps).length) {
+                onChange
+                    ? onChange(changedDeps)
+                    : console.log('[useWhichDepChanged]', changedDeps);
             }
         }
 

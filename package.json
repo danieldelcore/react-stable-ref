@@ -1,7 +1,7 @@
 {
     "name": "react-stable-ref-tester",
     "version": "0.1.0",
-    "description": "A development only hook for testing stable refs",
+    "description": "An assortment of utilities for testing against unstable references in React",
     "main": "lib/index.js",
     "author": "Daniel Del Core",
     "license": "MIT",
@@ -19,7 +19,7 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
-        "lint": "eslint ./src/ ./.storybook/ --config .eslintrc.js --ext tsx,ts",
+        "lint": "eslint --config .eslintrc.js --ext tsx,ts ./src/ ./examples ",
         "lint:fix": "npm run lint -- --fix",
         "preversion": "npm run lint && npm run typecheck && npm run test",
         "version": "npm run build",
@@ -41,20 +41,22 @@
     "bugs": {
         "url": "https://github.com/danieldelcore/react-stable-ref-tester/issues"
     },
-    "dependencies": {
-        "stylis": "^3.5.4"
-    },
     "devDependencies": {
-        "@storybook/addon-storysource": "^5.0.0",
-        "@storybook/react": "^5.0.0",
+        "@babel/core": "^7.7.5",
+        "@storybook/addon-storysource": "^5.2.8",
+        "@storybook/addons": "^5.2.8",
+        "@storybook/react": "^5.2.8",
+        "@storybook/source-loader": "^5.2.8",
         "@storybook/storybook-deployer": "^2.8.1",
         "@testing-library/react": "^8.0.5",
         "@types/jest": "^23.3.13",
+        "@types/jsdom": "^12.2.3",
         "@types/react": "^16.8.1",
+        "@types/react-dom": "^16.8.2",
         "@types/storybook__react": "^4.0.0",
         "@typescript-eslint/eslint-plugin": "^1.4.2",
         "@typescript-eslint/parser": "^1.4.2",
-        "awesome-typescript-loader": "^5.2.1",
+        "babel-loader": "^8.0.6",
         "eslint": "^5.15.1",
         "eslint-config-prettier": "^4.1.0",
         "eslint-plugin-prettier": "^3.0.1",
@@ -63,9 +65,12 @@
         "jest": "^24.0.0",
         "jest-serializer-html-string": "^1.0.1",
         "jest-watch-typeahead": "^0.4.2",
+        "jsdom": "^14.0.0",
         "prettier": "^1.16.4",
         "react": "^16.8.1",
+        "react-dom": "^16.8.4",
         "ts-jest": "^24.0.2",
+        "ts-loader": "^6.2.1",
         "typescript": "^3.3.1"
     },
     "peerDependencies": {

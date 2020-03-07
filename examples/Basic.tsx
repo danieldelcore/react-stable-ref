@@ -1,19 +1,63 @@
 import { storiesOf } from '@storybook/react';
-import React, { FC, ReactNode, useEffect } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 
-import { useStableRefTester } from '../src';
+import { useStableRefTester, useWhichDepChanged } from '../src';
+
+interface ButtonProps {
+    onClick: () => void;
+    children: ReactNode;
+}
+
+const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
+    const myArray = ['1', '2', '3'];
+
+    useStableRefTester();
+    useWhichDepChanged({ myArray });
+
+    useEffect(() => {
+        console.warn('I should not be called');
+    }, [myArray]);
+
+    return (
+        <button type="button" onClick={onClick}>
+            {children}
+        </button>
+    );
+};
+
+const StableButton: FC<ButtonProps> = ({ onClick, children }) => {
+    const myArray = ['1', '2', '3'];
+
+    useStableRefTester();
+    useWhichDepChanged({ myArray: JSON.stringify(myArray) });
+
+    useEffect(() => {
+        console.warn('I should not be called');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(myArray)]);
+
+    return (
+        <button type="button" onClick={onClick}>
+            {children}
+        </button>
+    );
+};
 
 storiesOf('Basic', module).add('Visualize unstable references', () => {
-    const UnstableButton: FC<{ children: ReactNode }> = ({ children }) => {
-        const myArray = ['1', '2', '3'];
+    const [isStable, setIsStable] = useState(false);
 
-        useStableRefTester();
-        useEffect(() => {
-            console.warn('I should not be called');
-        }, [myArray]);
-
-        return <button>{children}</button>;
-    };
-
-    return <UnstableButton>I am an unstable button 😵</UnstableButton>;
+    return (
+        <React.Fragment>
+            <p>Open the console to view output</p>
+            {isStable ? (
+                <StableButton onClick={() => setIsStable(!isStable)}>
+                    Stable button 😁
+                </StableButton>
+            ) : (
+                <UnstableButton onClick={() => setIsStable(!isStable)}>
+                    Unstable button 😵
+                </UnstableButton>
+            )}
+        </React.Fragment>
+    );
 });

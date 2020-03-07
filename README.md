@@ -35,9 +35,7 @@ A **development only** hook, which increments state over a predefined interval, 
 
 **Arguments:**
 
--   args: `Object`
-    -   timeout: `Number` Timeout between rerenders
-    -   shouldLog: `Bool` Emit a warning log on rerender
+-   timeout: `Number` Timeout between rerenders
 
 **Returns:**
 
@@ -67,8 +65,8 @@ _Inspired by_: [useWhyDidYouUpdate](https://usehooks.com/useWhyDidYouUpdate/)
 
 **Arguments:**
 
--   name: `String` A name to identify your hook when logged to the console
 -   dependencies: `Object` A dependency object which mirrors the dependency array of the hook you are trying to test
+-   onChange(changedDeps): `(changedDeps: Obj) => void` A callback which is fired when a dependency is changed.
 
 **Returns:**
 
@@ -80,7 +78,9 @@ _Inspired by_: [useWhyDidYouUpdate](https://usehooks.com/useWhyDidYouUpdate/)
 const UnstableButton = ({ children }) => {
     const myArray = ['1', '2', '3'];
 
-    useWhichDepChanged('UnstableButton', { myArray, children });
+    useWhichDepChanged({ myArray, children }, onChange(changedDeps) => {
+        console.log('UnstableButton: ', changedDeps); // UnstableButton: myArray
+    });
 
     return <button>{children}</button>;
 };
@@ -91,6 +91,12 @@ const UnstableButton = ({ children }) => {
 _Coming soon..._
 
 A react hook for deeply comparing objects and arrays passed into its dependency array.
+
+### `useCustomComparedEffect()`
+
+_Coming soon..._
+
+A react hook to allow you to provide custom methods used to comparing dependencies and trigger an effect.
 
 ### `<RenderCount />`
 
@@ -107,4 +113,3 @@ Huge thank you to [Pablo Stanley](https://twitter.com/pablostanley) and contribu
 -   [Introducing Hooks](https://reactjs.org/docs/hooks-intro.html)
 -   [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)
 -   [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback/)
-
