@@ -18,14 +18,37 @@ Your stable reference utility library with everything you need to test, visualiz
 
 `npm install --save react-stable-ref` or `yarn add react-stable-ref`
 
+## Example
+
+```jsx
+const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
+    // Unstable reference (unstableArray is reassigned on every render)
+    const unstableArray = ['1', '2', '3'];
+    const stableValue = 'Im stable because im a string';
+
+    useStableRefTester(); // Triggers rerenders every second
+    useWhichDepChanged({ unstableArray, stableValue });
+    /**
+     * Will output the following to the console (or onChange if you pass it in)
+     *
+     * > [useWhichDepChanged]: { unstableArray: { from: [1, 2, 3]; to: [1, 2, 3]}}
+     */
+
+    return (
+        <button type="button" onClick={onClick}>
+            {children}
+        </button>
+    );
+};
+```
+
 ## Motivation 🧠
 
-I struggle with React hooks! It's not always obvious to me if i'm using unstable references with hooks such as `useEffect`. Unnecessary rerenders when left unchecked can decrease the performance of your app, cause jank and ultimately degrade your user's experience 😭.
+It's not always obvious unstable references are passed into hooks such as `useEffect`. This can cause unnecessary rerenders, which when left unchecked can decrease the performance of your app, cause jank and ultimately degrade your user's experience 😭.
 
-Thankfully the React team have already thought about this and provide [lint rules to help](https://www.npmjs.com/package/eslint-plugin-react-hooks) 🥰. But what if you're passing objects and arrays into dependency arrays which are not 'deeply' compared?
-How can you know for sure? This is why I've put this library together...
+Thankfully the React team have already thought about this and provided [lint rules to help](https://www.npmjs.com/package/eslint-plugin-react-hooks) 🥰. But what if you're passing objects and arrays into dependency arrays which are not 'deeply' compared? How can you know for sure?
 
-Think of it as your stable reference utility library with everything you need to test, visualize and protect against the dreaded rerender 😱.
+`react-stable-ref` fills that gap and provides an assortment of utilities to help test, visualize and protect against the dreaded rerender 😱.
 
 ## API 🤖
 
