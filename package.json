@@ -1,5 +1,5 @@
 {
-    "name": "react-stable-ref-tester",
+    "name": "react-stable-ref",
     "version": "0.2.0",
     "description": "An assortment of utilities for testing against unstable references in React",
     "main": "lib/index.js",
@@ -26,10 +26,10 @@
         "postversion": "git push && git push --tags",
         "postpublish": "npm run deploy-storybook"
     },
-    "homepage": "https://github.com/danieldelcore/react-stable-ref-tester#readme",
+    "homepage": "https://github.com/danieldelcore/react-stable-ref#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/danieldelcore/react-stable-ref-tester.git"
+        "url": "git+https://github.com/danieldelcore/react-stable-ref.git"
     },
     "keywords": [
         "react",
@@ -39,7 +39,7 @@
         "useMemo"
     ],
     "bugs": {
-        "url": "https://github.com/danieldelcore/react-stable-ref-tester/issues"
+        "url": "https://github.com/danieldelcore/react-stable-ref/issues"
     },
     "devDependencies": {
         "@babel/core": "^7.7.5",
