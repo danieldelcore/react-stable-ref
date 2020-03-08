@@ -9,14 +9,14 @@ interface ButtonProps {
 }
 
 const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
-    const myArray = ['1', '2', '3'];
+    const unstableArray = ['1', '2', '3'];
 
     useStableRefTester();
-    useWhichDepChanged({ myArray });
+    useWhichDepChanged({ unstableArray });
 
     useEffect(() => {
         console.warn('I should not be called');
-    }, [myArray]);
+    }, [unstableArray]);
 
     return (
         <button type="button" onClick={onClick}>
@@ -26,15 +26,15 @@ const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
 };
 
 const StableButton: FC<ButtonProps> = ({ onClick, children }) => {
-    const myArray = ['1', '2', '3'];
+    const stableArray = ['1', '2', '3'];
 
     useStableRefTester();
-    useWhichDepChanged({ myArray: JSON.stringify(myArray) });
+    useWhichDepChanged({ stableArray: JSON.stringify(stableArray) });
 
     useEffect(() => {
         console.warn('I should not be called');
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [JSON.stringify(myArray)]);
+    }, [JSON.stringify(stableArray)]);
 
     return (
         <button type="button" onClick={onClick}>
