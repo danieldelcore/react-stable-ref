@@ -1,6 +1,6 @@
 {
     "name": "react-stable-ref",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "An assortment of utilities for testing against unstable references in React",
     "main": "lib/index.js",
     "author": "Daniel Del Core",
