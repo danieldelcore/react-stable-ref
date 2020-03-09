@@ -11,14 +11,12 @@ const useStableRefTester = (timeout: number = 1000) => {
 
     useEffect(() => {
         const token = setTimeout(() => {
-            console.log(`Testing refs: #${count}`);
+            console.log('[useStableRefTester]', `Render count: #${count}`);
 
             setCount(count + 1);
-
-            return () => {
-                clearTimeout(token);
-            };
         }, timeout);
+
+        return () => clearTimeout(token);
     }, [count, timeout]);
 };
 

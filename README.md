@@ -123,9 +123,12 @@ A react hook to allow you to provide custom methods used to comparing dependenci
 
 ### `<RenderCount />`
 
-_Coming soon..._
-
 A visual component that keeps track of the number of renders that have occurred.
+
+**Props:**
+
+-   initialCount: `Number` Initial counter value
+-   count: `Number` Provide a count for a controlled API
 
 ## Thanks 😍
 
