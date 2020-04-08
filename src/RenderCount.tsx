@@ -9,8 +9,6 @@ const RenderCount: FC<RenderCountProps> = ({ initialCount = 0, count }) => {
     const countRef = useRef(count || initialCount);
 
     if (!count) {
-        console.log(initialCount, count);
-
         countRef.current = countRef.current + 1;
     }
 
