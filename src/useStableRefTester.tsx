@@ -18,6 +18,8 @@ const useStableRefTester = (timeout: number = 1000) => {
 
         return () => clearTimeout(token);
     }, [count, timeout]);
+
+    return count;
 };
 
 export default useStableRefTester;
