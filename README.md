@@ -62,7 +62,7 @@ A **development only** hook, which increments state over a predefined interval, 
 
 **Returns:**
 
-`count`: `Number`
+count: `Number`
 
 **Example:**
 
