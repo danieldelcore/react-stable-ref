@@ -1,16 +1,13 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
+import useRenderCount from './useRenderCount';
 
 export interface RenderCountProps {
     initialCount?: number;
     count?: number;
 }
 
-const RenderCount: FC<RenderCountProps> = ({ initialCount = 0, count }) => {
-    const countRef = useRef(count || initialCount);
-
-    if (!count) {
-        countRef.current = countRef.current + 1;
-    }
+const RenderCount: FC<RenderCountProps> = ({ initialCount = 1, count }) => {
+    const currentCount = useRenderCount(count || initialCount);
 
     return (
         <span
@@ -25,11 +22,10 @@ const RenderCount: FC<RenderCountProps> = ({ initialCount = 0, count }) => {
                 fontSize: '12px',
                 color: '#bf2600',
                 backgroundColor: '#ffebe6',
-                fontFamily:
-                    '-apple-system, BlinkMacSystemFont, San Francisco, Roboto, Segoe UI, Helvetica Neue, sans-serif',
+                fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
             }}
         >
-            {countRef.current}
+            {count ? count : currentCount}
         </span>
     );
 };
