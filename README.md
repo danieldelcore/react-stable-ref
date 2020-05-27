@@ -26,7 +26,7 @@ const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
     const unstableArray = ['1', '2', '3'];
     const stableValue = 'Im stable because im a string';
 
-    useStableRefTester(); // Triggers rerenders every second
+    useStableRefTester(); // Triggers re-renders every second
     useWhichDepChanged({ unstableArray, stableValue });
     /**
      * Will output the following to the console (or onChange if you pass it in)
@@ -48,7 +48,7 @@ It's not always obvious unstable references are passed into hooks such as `useEf
 
 Thankfully the React team have already thought about this and provided [lint rules to help](https://www.npmjs.com/package/eslint-plugin-react-hooks) 🥰. But what if you're passing objects and arrays into dependency arrays which are not 'deeply' compared? How can you know for sure?
 
-`react-stable-ref` fills that gap and provides an assortment of utilities to help test, visualize and protect against the dreaded rerender 😱.
+`react-stable-ref` fills that gap and provides an assortment of utilities to help test, visualize and protect against the dreaded re-render 😱.
 
 ## API 🤖
 
@@ -109,6 +109,41 @@ const UnstableButton = ({ children }) => {
 };
 ```
 
+### `useRenderCount()`
+
+A hook which returns how many times it has been rendered.
+
+**Arguments:**
+
+-   initialCount: `Number` Initial counter value
+
+**Returns:**
+
+-   count: `Number` Current counter value
+
+**Example:**
+
+```jsx
+const RenderCounter = () => {
+    const count = useRenderCount();
+
+    return <button>{count}</button>;
+};
+```
+
+### `<RenderCount />`
+
+A visual component that keeps track of the number of renders that have occurred.
+
+<p align="left">
+  <img width="200" src="./assets/rendercount.png" alt="Render count component">
+</p>
+
+**Props:**
+
+-   initialCount: `Number` Initial counter value
+-   count: `Number` Provide a count for a controlled API
+
 ### `useDeeplyComparedEffect()`
 
 _Coming soon..._
@@ -120,15 +155,6 @@ A react hook for deeply comparing objects and arrays passed into its dependency 
 _Coming soon..._
 
 A react hook to allow you to provide custom methods used to comparing dependencies and trigger an effect.
-
-### `<RenderCount />`
-
-A visual component that keeps track of the number of renders that have occurred.
-
-**Props:**
-
--   initialCount: `Number` Initial counter value
--   count: `Number` Provide a count for a controlled API
 
 ## Thanks 😍
 
