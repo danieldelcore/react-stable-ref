@@ -44,7 +44,7 @@ const UnstableButton: FC<ButtonProps> = ({ onClick, children }) => {
 
 ## Motivation 🧠
 
-It's not always obvious unstable references are passed into hooks such as `useEffect`. This can cause unnecessary rerenders, which when left unchecked can decrease the performance of your app, cause jank and ultimately degrade your user's experience 😭.
+It's not always obvious when unstable references are passed into hooks such as `useEffect`. This can cause unnecessary rerenders, which when left unchecked can decrease the performance of your app, cause jank and ultimately degrade your user's experience 😭.
 
 Thankfully the React team have already thought about this and provided [lint rules to help](https://www.npmjs.com/package/eslint-plugin-react-hooks) 🥰. But what if you're passing objects and arrays into dependency arrays which are not 'deeply' compared? How can you know for sure?
 
